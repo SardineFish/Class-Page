@@ -1,0 +1,12 @@
+
+.bg-img {
+    background-image: url(../image/bg.png);
+}
+
+#bg-img-wrapper {
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+}
