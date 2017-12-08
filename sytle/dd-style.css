@@ -3,6 +3,8 @@
     left: 0;
     top: 0;
     position: fixed;
+    overflow: hidden;
+}
 
 body {
     margin: 0;
