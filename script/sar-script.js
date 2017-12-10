@@ -159,9 +159,13 @@ function load()
     {
         return timingFunc(t) * (to - from) + from;
     }
-    function timingFunc(t)
+    function timingFunc(t, iterate)
     {
-        return Math.pow((-Math.cos(Math.PI * t) + 1) / 2, 1/2);
+        if (iterate === undefined)
+            iterate = 2;    
+        if (iterate === 0)
+            return t;
+        return (-Math.cos(Math.PI * timingFunc(t, iterate-1)) + 1) / 2;
     }
 
     
