@@ -161,7 +161,7 @@ function load()
     }
     function timingFunc(t)
     {
-        return t;
+        return Math.pow((-Math.cos(Math.PI * t) + 1) / 2, 1/2);
     }
 
     
