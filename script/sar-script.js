@@ -2,6 +2,7 @@ window.addEventListener("load", load);
 function load()
 {
     initBGMask();
+    initCircle();
 }
 function initBGMask()
 {
@@ -12,6 +13,7 @@ function initBGMask()
     canvas.height = height;
     canvas.width = width;
     var rectWrapHeight = 220;
+    var lineCount = 5;
     var rectData = [
         {
             width: 500,
@@ -128,7 +130,18 @@ function initBGMask()
         if (t > 1)
             t = 1;
         ctx.fillStyle = color;
+        ctx.clearRect(0, 0, width, height);
         ctx.fillRect(0, 0, width, height);
+        var w = width / (lineCount + 1);
+        for (var i = 1; i <= lineCount; i++)
+        {
+            var x = Math.floor(w * i)+0.5;
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+            ctx.strokeStyle = "rgba(255,255,255,0.1)";
+            ctx.lineWidth = 0.1;
+            ctx.stroke();
+        }
         for (var i = 0; i < rectTransform.length; i++)
         {
             rectTransform[i].pos.x = interpolate(rectData[i].pos.x, targetData[i].pos.x, t);
@@ -190,4 +203,33 @@ function initBGMask()
             return t;
         return (-Math.cos(Math.PI * timingFunc(t, iterate - 1)) + 1) / 2;
     }
+}
+function initCircle()
+{
+    var element = document.getElementById("circle");
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var k = 0.1;
+    var scaled = false;
+    window.addEventListener("mousemove", function (e)
+    {
+        if (scaled)
+            return;    
+        var x = e.clientX;
+        var y = e.clientY;
+        var offsetX = x - width / 2;
+        var offsetY = y - height / 2;
+        offsetX *= k;
+        offsetY *= k;
+        element.style.left = offsetX + "px";
+        element.style.top = offsetY + "px";
+    });
+    function zoom()
+    {
+        scaled = true;
+        element.style.left = 0;
+        element.style.top = 0;
+        element.style.width = element.style.height = Math.sqrt(width * width + height * height) + "px";
+    }
+    setTimeout(zoom, 1000);
 }

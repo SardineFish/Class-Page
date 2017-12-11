@@ -21,7 +21,8 @@
     background-color: rgba(255,248,200,0.5);
     border-radius: 100%;
     position: relative;
-    
+    transition: left .5s,right .5s,width 1s,height 1s;
+    transition-timing-function: ease-out;
 }
 
 #circle-wrapper {
@@ -35,4 +36,12 @@
 
 #mask {
     z-index: -10;
+}
+
+#circle-center {
+    position: relative;
+}
+
+body {
+    overflow: hidden;
 }
