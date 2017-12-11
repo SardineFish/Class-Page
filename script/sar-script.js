@@ -1,6 +1,10 @@
 window.addEventListener("load", load);
 function load()
 {
+    initBGMask();
+}
+function initBGMask()
+{
     var canvas = document.getElementById("canvas-mask");
     var width = parseInt(getComputedStyle(canvas).width);
     var height = parseInt(getComputedStyle(canvas).height);
@@ -71,7 +75,7 @@ function load()
     ];
     var zoomRect = [
         {
-            width: width/2,
+            width: width / 2,
             height: (height - rectWrapHeight) / 2,
             x: -100,
             pos: { x: width / 2, y: 0 }
@@ -86,9 +90,10 @@ function load()
             width: width / 2,
             height: (height - rectWrapHeight) / 2,
             x: 50,
-            pos: { x: width / 2, y: (height+rectWrapHeight) / 2 }
+            pos: { x: width / 2, y: (height + rectWrapHeight) / 2 }
         }
     ];
+
     var color = "rgba(255,238,119,1.0)";
     /**
      * @type {CanvasRenderingContext2D}
@@ -102,10 +107,12 @@ function load()
         rectTransform[i].pos = Object.create(rectData[i].pos);
     }
 
-    setTimeout(() => {
+    setTimeout(() =>
+    {
         targetData = zoomRect;
         transformStartTime = time;
         duration = 1000;
+        setInterval(next, 1000);
     }, 1000);
 
     window.requestAnimationFrame(update);
@@ -119,7 +126,7 @@ function load()
         var dt = (delay - lastDelay) / 1000;
         var t = (time - transformStartTime) / duration;
         if (t > 1)
-            t = 1;    
+            t = 1;
         ctx.fillStyle = color;
         ctx.fillRect(0, 0, width, height);
         for (var i = 0; i < rectTransform.length; i++)
@@ -133,7 +140,23 @@ function load()
         }
         window.requestAnimationFrame(update);
     }
+    function next()
+    {
+        rectData = rectTransform;
+        randomNext();
+        targetData = nextRect;
+        transformStartTime = time;
 
+    }
+    function randomNext()
+    {
+        for (var i = 0; i < nextRect.length; i++)
+        {
+            nextRect[i].width = 300 * Math.random() + 400;
+            nextRect[i].x = 300 * (Math.random() - 0.5) * 2;
+        }
+        initPos(nextRect);
+    }
     function initPos(rectData)
     {
         var totalHeight = 0;
@@ -162,11 +185,9 @@ function load()
     function timingFunc(t, iterate)
     {
         if (iterate === undefined)
-            iterate = 2;    
+            iterate = 2;
         if (iterate === 0)
             return t;
-        return (-Math.cos(Math.PI * timingFunc(t, iterate-1)) + 1) / 2;
+        return (-Math.cos(Math.PI * timingFunc(t, iterate - 1)) + 1) / 2;
     }
-
-    
 }
