@@ -348,6 +348,9 @@
                 main.style.left = offset + 'px';
             }
             footerleft.onclick = function () {
+
+                moveLeft();
+
                 if (curr < 0 && curr >= -9 * 0.532 * 1897) {
                     animate1(0.532 * 1897 + curr);
                     curr += 0.532 * 1897;
@@ -356,6 +359,10 @@
             }
 
             footerright.onclick = function () {
+    
+                moveRight();
+    
+    
                 if (curr <= 0.532 * 1897 && curr >= -8 * 0.532 * 1897) {
                     animate1(curr - 0.532 * 1897);
                     curr -= 0.532 * 1897;
@@ -363,6 +370,10 @@
                 }
             }
             contentmaskleft.onclick = function () {
+
+
+                moveLeft();
+
                 if (curr < 0 && curr >= -9 * 0.532 * 1897) {
                     animate1(0.532 * 1897 + curr);
                     curr += 0.532 * 1897;
@@ -371,6 +382,10 @@
             }
 
             contentmaskright.onclick = function () {
+
+                moveRight();
+
+
                 if (curr <= 0.532 * 1897 && curr >= -8 * 0.532 * 1897) {
                     animate1(curr - 0.532 * 1897);
                     curr -= 0.532 * 1897;
@@ -419,7 +434,7 @@
 
 
 
-                //copy
+                zoomIn();
 
             })
 
@@ -458,14 +473,13 @@
 
 
 
-                //copy
-
+                zoomOut();
 
             })
 
 
 
-            //----------------------------点击展开事件-----------------------------------（2）-----------
+            //----------------------------点击close事件-----------------------------------（2）-----------
 
 
             //1 和 2 相同，都copy过来相同代码即可
@@ -527,7 +541,7 @@
 
 
 
-            //copy 
+            zoomOut();
 
 
 

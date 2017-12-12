@@ -55,6 +55,7 @@ function initBGMask()
         }
     ];
     var targetData = rectData;
+    var lastData;
     var nextRect = [
         {
             width: 400,
@@ -109,13 +110,12 @@ function initBGMask()
         rectTransform[i].pos = Object.create(rectData[i].pos);
     }
 
-    setTimeout(() =>
+    /*setTimeout(() =>
     {
-        targetData = zoomRect;
-        transformStartTime = time;
+        maskZoomIn();
+        setInterval(back, 1000);
         duration = 1000;
-        setInterval(next, 1000);
-    }, 1000);
+    }, 1000);*/
 
     window.requestAnimationFrame(update);
     var lastDelay = 0;
@@ -128,7 +128,10 @@ function initBGMask()
         var dt = (delay - lastDelay) / 1000;
         var t = (time - transformStartTime) / duration;
         if (t > 1)
+        {
+            rectData = targetData;
             t = 1;
+        }
         ctx.fillStyle = color;
         ctx.clearRect(0, 0, width, height);
         ctx.fillRect(0, 0, width, height);
@@ -153,13 +156,29 @@ function initBGMask()
         }
         window.requestAnimationFrame(update);
     }
-    function next()
+    function transformTo(nextRect)
     {
+        lastData = rectData;
         rectData = rectTransform;
-        randomNext();
         targetData = nextRect;
         transformStartTime = time;
+    }
+    function next()
+    {
+        transformTo(randomNext());
+    }
+    function back()
+    {
+        transformTo(lastData);
+    }
 
+    function maskZoomIn()
+    {
+        transformTo(zoomRect);
+        /*lastData = rectData;
+        rectData = rectTransform;
+        targetData = zoomRect;
+        transformStartTime = time;*/
     }
     function randomNext()
     {
@@ -169,6 +188,7 @@ function initBGMask()
             nextRect[i].x = 300 * (Math.random() - 0.5) * 2;
         }
         initPos(nextRect);
+        return nextRect;
     }
     function initPos(rectData)
     {
@@ -203,6 +223,9 @@ function initBGMask()
             return t;
         return (-Math.cos(Math.PI * timingFunc(t, iterate - 1)) + 1) / 2;
     }
+    window.maskNext = next;
+    window.maskBack = back;
+    window.maskZoomIn = maskZoomIn;
 }
 function initCircle()
 {
@@ -224,12 +247,45 @@ function initCircle()
         element.style.left = offsetX + "px";
         element.style.top = offsetY + "px";
     });
-    function zoom()
+    function zoomIn()
     {
         scaled = true;
         element.style.left = 0;
         element.style.top = 0;
         element.style.width = element.style.height = Math.sqrt(width * width + height * height) + "px";
+        //setTimeout(zoomOut, 1000);
     }
-    setTimeout(zoom, 1000);
+    function zoomOut()
+    {
+        scaled = false;
+        element.style.left = 0;
+        element.style.top = 0;
+        element.style.width = element.style.height = "500px";
+    }
+    //setTimeout(zoomIn, 1000);
+    window.circleZoomIn = zoomIn;
+    window.circleZoomOut = zoomOut;
+}
+function initImage()
+{
+    var imgs = document.querySelectorAll(".bg-img");
+    
+}
+window.zoomIn = function ()
+{
+    circleZoomIn();
+    maskZoomIn();
+}
+window.zoomOut = function ()
+{
+    circleZoomOut();
+    maskBack();
+}
+window.moveRight = function ()
+{
+    maskNext();
+}
+window.moveLeft = function ()
+{
+    maskNext();
 }
