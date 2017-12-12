@@ -18,6 +18,7 @@ a {
 #content {
 	position: relative;
 	z-index: 9999;
+	width: 100%;
 }
 
 #content-page-1 {
@@ -46,6 +47,9 @@ body {
 }
 
 .content-header-right {
+	position: absolute;
+	right: 30px;
+	top: 36px;
 	display: inline-block;
 }
 
@@ -62,14 +66,17 @@ body {
 }
 
 #content main {
-	position: relative;
+	position: fixed;
 	width: 100%;
 	left: 0px;
+	top: 23%;
 	display: flex;
 	flex-wrap: nowrap;
-	transform: translateX(15.6%);
 	transition: all 1.8s;
+	padding-left: 20%;
 }
+
+#cmain {}
 
 .content-main-d1 {
 	position: relative;
@@ -151,11 +158,13 @@ body {
 }
 
 #content-footer-left {
-	right: 100px;
+	right: 110px;
+	padding: 5px 3.8px 0px 1.2px;
 }
 
 #content-footer-right {
 	right: 30px;
+	padding: 5px 1.2px 0px 3.8px;
 }
 
 .content-footer-body {
@@ -260,11 +269,18 @@ body {
 }
 
 .tor-head {
+	position: fixed;
 	padding-top: 50px;
+	bottom: 20px;
+	left: 0px;
+}
+
+footer {
+	height: 50px;
 }
 
 .tor {
-	padding-left: 50px;
+	padding-left: 20px;
 	padding-top: 10px;
 	display: flex;
 	align-content: center;
@@ -275,10 +291,10 @@ body {
 }
 
 #footer-down {
-	position: absolute;
+	position: fixed;
 	display: none;
-	left: 40px;
-	top: -55px;
+	left: 49.4%;
+	bottom: 32px;
 	transform: rotate(180deg);
 }
 

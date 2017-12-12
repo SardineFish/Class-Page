@@ -19,8 +19,8 @@
             <div class="bg-img full" style="background-image: url(image/bg-3.png);"></div>
         </div>
         <div id="circle-wrapper" class="full">
-           <div id="circle-center">
-            <div id="circle"></div>
+            <div id="circle-center">
+                <div id="circle"></div>
             </div>
         </div>
         <div id="mask" class="full">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </header>
-                <main>
+                <main id="cmain">
                     <div class="content-main-d1 d1">
                         <h2>Dormitory XXX</h2>
                         <p>Le Voyagist is a French platform curated by a team of passionate </p>
@@ -153,12 +153,32 @@
                     </div>
                     <div class="content-footer-body" id="content-footer-right">
                         <p>
-                            <a href="###">></a>
+                            <a href="###">
+                                <?xml version="1.0" standalone="no"?>
+                                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                <svg t="1513055316861" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1877"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="28">
+                                    <defs>
+                                        <style type="text/css"></style>
+                                    </defs>
+                                    <path d="M767.707 519.451l-459.642-447.973-52.012 50.732 407.574 397.211-407.542 397.21 51.975 50.733z" p-id="1878" fill="#ffffff"></path>
+                                </svg>
+                            </a>
                         </p>
                     </div>
                     <div class="content-footer-body" id="content-footer-left">
                         <p>
                             <a href="###">
+                                <?xml version="1.0" standalone="no"?>
+                                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                <svg t="1513055499116" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2133"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="28">
+                                    <defs>
+                                        <style type="text/css"></style>
+                                    </defs>
+                                    <path d="M352 512l384-384c12.8-12.8 12.8-32 0-44.8-12.8-12.8-32-12.8-44.8 0L288 486.4C281.6 492.8 275.2 505.6 275.2 512c0 6.4 0 19.2 6.4 25.6l409.6 409.6c12.8 12.8 32 12.8 44.8 0s12.8-32 0-44.8L352 512z"
+                                        p-id="2134" fill="#ffffff"></path>
+                                </svg>
                             </a>
                         </p>
                     </div>
@@ -321,37 +341,39 @@
             var footerright = document.getElementById("content-footer-right");
             var contentmaskleft = document.getElementById("content-mask-left");
             var contentmaskright = document.getElementById("content-mask-right");
-
+            var seewidth = document.body.clientWidth;
+            var cmain = document.getElementById("cmain");
+            //cmain.style.left = 0.013*seewidth+"%";
             function animate1(offset) {
-                main.style.left = offset + '%';
+                main.style.left = offset + 'px';
             }
             footerleft.onclick = function () {
-                if (curr < 0 && curr >= -10 * 66.5) {
-                    animate1(66.5 + curr);
-                    curr += 66.5;
+                if (curr < 0 && curr >= -9 * 0.532 * 1897) {
+                    animate1(0.532 * 1897 + curr);
+                    curr += 0.532 * 1897;
                     count++;
                 }
             }
 
             footerright.onclick = function () {
-                if (curr <= 66.5 && curr >= -8 * 66.5) {
-                    animate1(curr - 66.5);
-                    curr -= 66.5;
+                if (curr <= 0.532 * 1897 && curr >= -8 * 0.532 * 1897) {
+                    animate1(curr - 0.532 * 1897);
+                    curr -= 0.532 * 1897;
                     count--;
                 }
             }
             contentmaskleft.onclick = function () {
-                if (curr < 0 && curr >= -10 * 66.5) {
-                    animate1(66.5 + curr);
-                    curr += 66.5;
+                if (curr < 0 && curr >= -9 * 0.532 * 1897) {
+                    animate1(0.532 * 1897 + curr);
+                    curr += 0.532 * 1897;
                     count++;
                 }
             }
 
             contentmaskright.onclick = function () {
-                if (curr <= 66.5 && curr >= -8 * 66.5) {
-                    animate1(curr - 66.5);
-                    curr -= 66.5;
+                if (curr <= 0.532 * 1897 && curr >= -8 * 0.532 * 1897) {
+                    animate1(curr - 0.532 * 1897);
+                    curr -= 0.532 * 1897;
                     count--;
                 }
             }
@@ -360,7 +382,21 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+
+
+
+            //----------------------------点击展开事件----------------------------------------------
+
+
+
+
+
             $(".content-main-d1").click(function () {
+
+
+
+
                 $("#content-mask-left").css("left", "-300px");
                 $("#content-mask-right").css("left", "100%");
                 $("#content-footer-left").css("opacity", "0");
@@ -379,8 +415,28 @@
                 $("#page-2-mask").animate({
                     "height": "980px"
                 }, 1000);
+
+
+
+
+                //copy
+
             })
+
+
+
+
+
+            //----------------------------点击关闭事件----------------------------------（1）------------
+
+
+
+
             $(".content-header-left").click(function () {
+
+
+
+
                 $("#content-mask-left").css("left", "0px");
                 $("#content-mask-right").css("left", "83%");
                 $("#content-footer-left").css("opacity", ".4");
@@ -399,8 +455,25 @@
                 $("#page-2-mask").animate({
                     "height": "1000px"
                 }, 1000);
+
+
+
+                //copy
+
+
             })
+
+
+
+            //----------------------------点击展开事件-----------------------------------（2）-----------
+
+
+            //1 和 2 相同，都copy过来相同代码即可
+
+
             $(".footer-back").click(function () {
+
+
                 $("#content-mask-left").css("left", "0px");
                 $("#content-mask-right").css("left", "83%");
                 $("#content-footer-left").css("opacity", ".4");
@@ -450,8 +523,18 @@
             $(".d10").click(function () {
                 $(".page-2-10").fadeIn(1000);
             })
+
+
+
+
+            //copy 
+
+
+
+
         })
     </script>
+
 </body>
 
 </html>
