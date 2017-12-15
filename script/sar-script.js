@@ -141,7 +141,7 @@ function initBGMask()
     var lastDelay = 0;
     var transformStartTime = 0;
     var time = 0;
-    var duration = 1000;
+    var duration = 2000;
     function update(delay)
     {
         window.requestAnimationFrame(update);

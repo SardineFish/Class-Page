@@ -17,6 +17,11 @@
             <div class="bg-img full display" style="background-image: url(image/bg-1.png);"></div>
             <div class="bg-img full hide" style="background-image: url(image/bg-2.jpg);"></div>
             <div class="bg-img full hide" style="background-image: url(image/bg-3.png);"></div>
+            <div class="bg-img full hide" style="background-image: url(image/bg-4.png);"></div>
+            <div class="bg-img full hide" style="background-image: url(image/bg-5.png);"></div>
+            <div class="bg-img full hide" style="background-image: url(image/bg-6.png);"></div>
+            <div class="bg-img full hide" style="background-image: url(image/bg-7.png);"></div>
+            <div class="bg-img full hide" style="background-image: url(image/bg-8.png);"></div>
         </div>
         <div id="circle-wrapper" class="full">
             <div id="circle-center">
@@ -188,8 +193,8 @@
             <div id="content-mask-right"></div>
         </div>
     </div>
-
-    <div id="page-2-mask"></div>
+<div id="page-2-mask"></div>
+    <section id="sectionpage2">
     <div class="page-2 page-2-1">
         <div class="footer-back">
             <?xml version="1.0" standalone="no"?>
@@ -330,67 +335,78 @@
             </svg>
         </div>
     </div>
+    </section>
 
     <script src="jquery-3.2.1.js" type="text/javascript"></script>
     <script type="text/javascript">
         var curr = 0;
         var count = 1;
-        window.onload = function () {
-            var main = document.getElementsByTagName("main")[0];
-            var footerleft = document.getElementById("content-footer-left");
-            var footerright = document.getElementById("content-footer-right");
-            var contentmaskleft = document.getElementById("content-mask-left");
-            var contentmaskright = document.getElementById("content-mask-right");
-            var seewidth = document.body.clientWidth;
-            var cmain = document.getElementById("cmain");
-            //cmain.style.left = 0.013*seewidth+"%";
+        var currtop = 96;
+window.onload = function(){
+    var main = document.getElementsByTagName("main")[0];
+    var footerleft = document.getElementById("content-footer-left");
+    var footerright = document.getElementById("content-footer-right");
+    var contentmaskleft = document.getElementById("content-mask-left");
+    var contentmaskright = document.getElementById("content-mask-right");
+    var seewidth = document.body.clientWidth;
+    var cmain = document.getElementById("cmain");
+    //cmain.style.left = 0.013*seewidth+"%";
+    var page2 = document.getElementById("sectionpage2");
+
+    function scoll1(topset){
+        page2.style.top = topset + '%';
+    }
+    document.body.onmousewheel = function(){
+        if(window.event.wheelDelta<0&&currtop!= 0){
+            //滚动事件，向下--------------------------------------------------------------------------------------------------------
+			currtop -= 8;
+            scoll1(currtop);
+	}
+		else if(window.event.wheelDelta>0&&currtop!= 96){
+            //滚动事件，向上-------------------------------------------------------------------------------------------------------
+			currtop += 8;
+            scoll1(currtop);
+		}
+
+
+    }
             function animate1(offset) {
                 main.style.left = offset + 'px';
             }
             footerleft.onclick = function () {
-
-                moveLeft();
-
+                
                 if (curr < 0 && curr >= -9 * 0.532 * 1897) {
                     animate1(0.532 * 1897 + curr);
                     curr += 0.532 * 1897;
                     count++;
                 }
+                //footer的左边点击事件///////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
             footerright.onclick = function () {
-    
-                moveRight();
-    
-    
                 if (curr <= 0.532 * 1897 && curr >= -8 * 0.532 * 1897) {
                     animate1(curr - 0.532 * 1897);
                     curr -= 0.532 * 1897;
                     count--;
                 }
+                 //footer的右边点击事件///////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
             contentmaskleft.onclick = function () {
-
-
-                moveLeft();
-
                 if (curr < 0 && curr >= -9 * 0.532 * 1897) {
                     animate1(0.532 * 1897 + curr);
                     curr += 0.532 * 1897;
                     count++;
                 }
+                 //main的左边点击事件///////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
             contentmaskright.onclick = function () {
-
-                moveRight();
-
-
                 if (curr <= 0.532 * 1897 && curr >= -8 * 0.532 * 1897) {
                     animate1(curr - 0.532 * 1897);
                     curr -= 0.532 * 1897;
                     count--;
                 }
+                 //中间main的右边点击事件///////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
         }
@@ -401,7 +417,7 @@
 
 
 
-            //----------------------------点击展开事件----------------------------------------------
+          
 
 
 
@@ -411,7 +427,7 @@
 
 
 
-
+                $("#sectionpage2").fadeIn(1000);
                 $("#content-mask-left").css("left", "-300px");
                 $("#content-mask-right").css("left", "100%");
                 $("#content-footer-left").css("opacity", "0");
@@ -430,26 +446,22 @@
                 $("#page-2-mask").animate({
                     "height": "980px"
                 }, 1000);
+               
 
-
-
-
-                zoomIn();
+           //所有寝室的中间大寝室名字的点击事件---------------------------------------------------------------------------copy点
 
             })
 
 
 
 
-
-            //----------------------------点击关闭事件----------------------------------（1）------------
 
 
 
 
             $(".content-header-left").click(function () {
 
-
+//header左上角的返回事件copy点----------------------------------------------------------------------------------------------------就是那三个横线
 
 
                 $("#content-mask-left").css("left", "0px");
@@ -470,23 +482,16 @@
                 $("#page-2-mask").animate({
                     "height": "1000px"
                 }, 1000);
-
-
-
-                zoomOut();
+        
 
             })
 
 
 
-            //----------------------------点击close事件-----------------------------------（2）-----------
-
-
-            //1 和 2 相同，都copy过来相同代码即可
 
 
             $(".footer-back").click(function () {
-
+//寝室页面出现后的返回代码copy position 这里是指寝室页面左上角的三角形点击事件-------------------------------------------------------------------
 
                 $("#content-mask-left").css("left", "0px");
                 $("#content-mask-right").css("left", "83%");
@@ -502,46 +507,53 @@
                     $(".activebody").find("p").fadeOut(1000);
                     $(".activebody").find("a").fadeOut(1000)
                 });
-                $(".page-2").fadeOut(1000);
+                $("#sectionpage2").fadeOut(1000);
                 $("#page-2-mask").animate({
                     "height": "1000px"
                 }, 1000);
             })
             $(".d1").click(function () {
+                //第一个寝室的点击寝室名字 出现到本寝室页面的事件                                  ------------------1-------------------copy点
                 $(".page-2-1").fadeIn(1000);
             })
             $(".d2").click(function () {
+                //第2个寝室的点击寝室名字 出现到本寝室页面的事件                                  -----------------2------------------copy点
                 $(".page-2-2").fadeIn(1000);
             })
             $(".d3").click(function () {
+                //第3个寝室的点击寝室名字 出现到本寝室页面的事件                                  ----------------3------------------copy点
                 $(".page-2-3").fadeIn(1000);
             })
             $(".d4").click(function () {
+                //第4个寝室的点击寝室名字 出现到本寝室页面的事件                                  -----------------4-------------------copy点
                 $(".page-2-4").fadeIn(1000);
             })
             $(".d5").click(function () {
+                //第5个寝室的点击寝室名字 出现到本寝室页面的事件                                  ------------------5------------------copy点
                 $(".page-2-5").fadeIn(1000);
             })
             $(".d6").click(function () {
+                //第6个寝室的点击寝室名字 出现到本寝室页面的事件                                  -----------------6----------------copy点
                 $(".page-2-6").fadeIn(1000);
             })
             $(".d7").click(function () {
+                //第7个寝室的点击寝室名字 出现到本寝室页面的事件                                  -----------------7-------------------copy点
                 $(".page-2-7").fadeIn(1000);
             })
             $(".d8").click(function () {
+                //第8个寝室的点击寝室名字 出现到本寝室页面的事件                                  -----------------8-----------------copy点
                 $(".page-2-8").fadeIn(1000);
             })
             $(".d9").click(function () {
+                //第9个寝室的点击寝室名字 出现到本寝室页面的事件                                  ------------------9-------------------copy点
                 $(".page-2-9").fadeIn(1000);
             })
             $(".d10").click(function () {
+                //第10个寝室的点击寝室名字 出现到本寝室页面的事件                                  ------------------10-------------------copy点
                 $(".page-2-10").fadeIn(1000);
             })
 
 
-
-
-            zoomOut();
 
 
 
