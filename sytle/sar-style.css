@@ -1,6 +1,7 @@
 
 .bg-img {
     background-size: cover;
+    transition: opacity 0.5s;
 }
 
 #bg-img-wrapper {
@@ -44,4 +45,12 @@
 
 body {
     overflow: hidden;
+}
+
+.bg-img.display {
+    opacity: 1;
+}
+
+.bg-img.hide {
+    opacity: 0;
 }
